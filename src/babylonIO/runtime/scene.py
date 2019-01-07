@@ -16,3 +16,12 @@ class Scene(LoggerMixin, object):
         """
 
         return self._nodes
+
+    @nodes.setter
+    def nodes(self, value):
+        """Set the nodes for the scene
+        
+        Arguments:
+            value {list} -- [list of nodes in the scene]
+        """
+        self._nodes = value

@@ -4,6 +4,9 @@ from scene import Scene
 from asset import Asset
 
 class GLTF(LoggerMixin, object):
+    """Represents a glTF instance
+    """
+
     def __init__(self, generator_name):
         self.logger.debug('Creating glTF object')
         self._asset = Asset(generator=generator_name)
@@ -11,14 +14,15 @@ class GLTF(LoggerMixin, object):
         self._scenes = []
         self._nodes = []
 
-    def get_scene(self, index):
-        """Returns a scene based on the scene index
+    @property
+    def scenes(self):
+        """Returns a list of glTF scenes
         
         Returns:
-            [scene] -- [Scene based on the scene index]
+            [list] -- [list of glTF scenes]
         """
 
-        return self._scenes[index]
+        return self._scenes
 
     def create_scene(self, nodes):
         scene = Scene()
