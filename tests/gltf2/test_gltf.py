@@ -157,6 +157,43 @@ class TestGLTF(unittest.TestCase):
         }
         )
 
+    def test_serialize_with_two_nodes_hierarchy_trs(self):
+        node = Node('test node')
+        node2 = Node('test node2')
+        node2.translation = [0.2, 0, 0]
+        node.children.append(node2)
+        nodes = [node]
+        self.gltf.create_scene(nodes)
+        self.assertEqual(self.gltf.serialize(), 
+        {
+            'asset': 
+            {
+                'version': '2.0', 
+                'generator': self.generator_name
+            }, 
+            'scenes': 
+            [
+                {
+                    'nodes': 
+                    [
+                        0
+                    ]
+                }
+            ], 
+            'nodes': 
+            [
+                {
+                    'name': 'test node',
+                    'children': [1]
+                },
+                {
+                    'name': 'test node2',
+                    'translation': node2.translation
+                }
+            ]
+        }
+        )
+
 
         
 

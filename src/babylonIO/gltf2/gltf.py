@@ -24,10 +24,15 @@ class GLTF(LoggerMixin, object):
         scene = Scene()
         scene.nodes = nodes
         self._scenes.append(scene)
+        [self._add_node_to_nodes(node) for node in nodes]
 
-        for node in nodes:
-            if not node in self._nodes:
-                self._nodes.append(node)
+
+    def _add_node_to_nodes(self, node):
+        if node not in self._nodes:
+            self._nodes.append(node)
+        for child in node.children:
+            self._add_node_to_nodes(child)
+
 
 
     def serialize(self, make_glb=False):
