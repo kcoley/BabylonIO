@@ -1,5 +1,5 @@
 import uuid
-from src.gltf2IO.mixins.loggermixin import LoggerMixin
+from src.babylonIO.mixins.loggermixin import LoggerMixin
 
 class Scene(LoggerMixin, object):
     def __init__(self):
