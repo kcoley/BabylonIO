@@ -1,2 +1,2 @@
 unittests:
-`python -m unittest -v tests.runtime.test_node`
+`python -m unittest discover -v tests.tests`
