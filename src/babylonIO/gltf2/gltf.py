@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+
 from src.babylonIO.mixins.loggermixin import LoggerMixin
 
-from scene import Scene
-from asset import Asset
+from .scene import Scene
+from .asset import Asset
 
 class GLTF(LoggerMixin, object):
     """Represents a glTF instance
