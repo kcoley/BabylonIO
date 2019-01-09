@@ -11,6 +11,7 @@ class Mesh(LoggerMixin, object):
             name {str} -- [Name of the mesh] (default: {None})
         """
         self._name = name
+        self._primitives = []
 
     @property
     def name(self):
@@ -31,3 +32,24 @@ class Mesh(LoggerMixin, object):
         """
 
         self._name = value
+
+    @property
+    def primitives(self):
+        """Gets the list of mesh primitives from the mesh
+        
+        Returns:
+            [list] -- [List of mesh primitives]
+        """
+
+        return self._primitives
+
+    @primitives.setter
+    def primitives(self, values):
+        """Sets the mesh primitives of the mesh
+        
+        Arguments:
+            values {list} -- [List of mesh primitives]
+        """
+        self._primitives = values
+
+
