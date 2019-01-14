@@ -1,6 +1,6 @@
 import unittest
 
-from src.babylonIO.runtime.node import Node
+from src.gltf2IO.runtime.node import Node
 
 class TestNode(unittest.TestCase):
     def setUp(self):

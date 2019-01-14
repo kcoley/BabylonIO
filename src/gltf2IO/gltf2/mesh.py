@@ -1,4 +1,4 @@
-from src.babylonIO.mixins.loggermixin import LoggerMixin
+from src.gltf2IO.mixins.loggermixin import LoggerMixin
 
 class Mesh(LoggerMixin, object):
     def __init__(self, name = None):

@@ -1,5 +1,5 @@
-from src.babylonIO.mixins.loggermixin import LoggerMixin
-from src.babylonIO.runtime import Scene, Node
+from src.gltf2IO.mixins.loggermixin import LoggerMixin
+from src.gltf2IO.runtime import Scene, Node
 
 class RuntimeIO(LoggerMixin, object):
     def __init__(self, is_right_handed = True):

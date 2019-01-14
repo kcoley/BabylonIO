@@ -1,6 +1,6 @@
 import unittest
 
-from src.babylonIO.gltf2 import Asset
+from src.gltf2IO.gltf2 import Asset
 
 class TestAsset(unittest.TestCase):
     def setUp(self):

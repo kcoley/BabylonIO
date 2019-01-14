@@ -1,5 +1,5 @@
 import unittest
-from src.babylonIO.gltf2 import GLTF, Node, Scene
+from src.gltf2IO.gltf2 import GLTF, Node, Scene
 
 class TestGLTF(unittest.TestCase):
     def setUp(self):

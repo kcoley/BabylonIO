@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from src.babylonIO.mixins.loggermixin import LoggerMixin
+from src.gltf2IO.mixins.loggermixin import LoggerMixin
 
 from .scene import Scene
 from .asset import Asset

@@ -1,7 +1,7 @@
 import unittest
 
-from src.babylonIO import runtime
-from src.babylonIO import gltf2
+from src.gltf2IO import runtime
+from src.gltf2IO import gltf2
 
 class TestRuntimeIO(unittest.TestCase):
     def test_from_gltf(self):

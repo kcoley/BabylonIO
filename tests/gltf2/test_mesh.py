@@ -1,6 +1,6 @@
 import unittest
 
-from src.babylonIO.gltf2 import Mesh, MeshPrimitive
+from src.gltf2IO.gltf2 import Mesh, MeshPrimitive
 class TestMesh(unittest.TestCase):
     def setUp(self):
         self.mesh_name = 'some_mesh'

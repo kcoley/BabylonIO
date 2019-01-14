@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 import unittest
 
-from src.babylonIO.gltf2.meshprimitive import MeshPrimitive, PrimitiveMode, PrimitiveAttribute
+from src.gltf2IO.gltf2.meshprimitive import MeshPrimitive, PrimitiveMode, PrimitiveAttribute
 
 class TestMeshPrimitive(unittest.TestCase):
     def setUp(self):

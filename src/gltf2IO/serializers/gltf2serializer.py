@@ -1,8 +1,8 @@
-from src.babylonIO.mixins.loggermixin import LoggerMixin
+from src.gltf2IO.mixins.loggermixin import LoggerMixin
 
-from src.babylonIO.gltf2.gltfobject import GLTFObject
-from src.babylonIO.gltf2.scene import Scene as GLTFScene
-from src.babylonIO.gltf2.node import Node as GLTFNode
+from src.gltf2IO.gltf2.gltfobject import GLTFObject
+from src.gltf2IO.gltf2.scene import Scene as GLTFScene
+from src.gltf2IO.gltf2.node import Node as GLTFNode
 
 class GLTF2Serializer(LoggerMixin, object):
     @staticmethod

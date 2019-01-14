@@ -1,6 +1,6 @@
 import uuid
 
-from src.babylonIO.mixins.loggermixin import LoggerMixin
+from src.gltf2IO.mixins.loggermixin import LoggerMixin
 
 class Node(LoggerMixin, object):
     """Represents a runtime node
