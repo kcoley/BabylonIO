@@ -1,6 +1,6 @@
 import unittest
 
-from src.gltf2IO.gltf2 import Node
+from src.gltf2IO.gltf2 import Node, Mesh
 class TestNode(unittest.TestCase):
     def setUp(self):
         self.name = 'test'
@@ -42,6 +42,14 @@ class TestNode(unittest.TestCase):
         scale = [0.5, 1,1]
         self.node.scale = scale
         self.assertEqual(self.node.scale, scale)
+
+    def test_get_mesh(self):
+        self.assertEqual(self.node.mesh, None)
+
+    def test_set_mesh(self):
+        mesh = Mesh()
+        self.node.mesh = mesh
+        self.assertEqual(self.node.mesh, mesh)
 
     
 

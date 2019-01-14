@@ -17,6 +17,8 @@ class Node(LoggerMixin, object):
         self._translation = [0,0,0]
         self._rotation = [0,0,0,1]
         self._scale = [1,1,1]
+        self._transform = None
+        self._mesh = None
 
     @property
     def name(self):
@@ -95,5 +97,22 @@ class Node(LoggerMixin, object):
             value {list} -- [list of floats representing scale]
         """
         self._scale = value
+
+    @property
+    def mesh(self):
+        """Gets the mesh from the node
+        """
+        return self._mesh
+
+    @mesh.setter
+    def mesh(self, value):
+        """Sets the mesh for the node
+        
+        Arguments:
+            value {Mesh} -- [Mesh to add to node]
+        """
+        self._mesh = value
+
+
 
 

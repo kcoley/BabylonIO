@@ -12,13 +12,13 @@ from .meshprimitive import MeshPrimitive
 class GLTF(LoggerMixin, object):
     """Represents a glTF instance
     """
-
     def __init__(self, generator_name):
         self.logger.debug('Creating glTF object')
         self._asset = Asset(generator=generator_name)
 
         self._scenes = []
         self._nodes = []
+        self._meshes = []
 
     @classmethod
     def deserialize(cls, gltf_data):
@@ -37,35 +37,6 @@ class GLTF(LoggerMixin, object):
             if 'generator' in asset:
                 gltf_asset.generator = asset['generator']
             gltf.asset = gltf_asset
-        
-        if 'nodes' in gltf_data:
-            for node in gltf_data['nodes']:
-                gltf_node = Node(node['name'] if 'name' in node else None)
-                if 'transform' in node:
-                    gltf_node.transform = node['transform']
-                else:
-                    if 'translation' in node:
-                        gltf_node.translation = node['translation']
-                    if 'rotation' in node:
-                        gltf_node.rotation = node['rotation']
-                    if 'scale' in node:
-                        gltf_node.scale = node['scale']
-                gltf.nodes.append(gltf_node)
-            for node_index, node in enumerate(gltf_data['nodes']):
-                if 'children' in node:
-                    for child_node_index in node['children']:
-                        gltf.nodes[node_index].children.append(gltf.nodes[child_node_index])
-
-
-
-        if 'scenes' in gltf_data:
-            for scene in gltf_data['scenes']:
-                gltf_scene = Scene()
-                nodes = []
-                if 'nodes' in scene:
-                    for node_index in scene['nodes']:
-                        nodes.append(gltf.nodes[node_index])
-                    gltf.create_scene(nodes)
 
         if 'meshes' in gltf_data:
             for mesh in gltf_data['meshes']:
@@ -88,6 +59,42 @@ class GLTF(LoggerMixin, object):
                             if 'TEXCOORD_1' in attributes:
                                 print('TEXCOORD_1')
                             gltf_mesh.primitives.append(gltf_primitive)
+                gltf.meshes.append(gltf_mesh)
+        
+        if 'nodes' in gltf_data:
+            for node in gltf_data['nodes']:
+                gltf_node = Node(node['name'] if 'name' in node else None)
+                if 'transform' in node:
+                    gltf_node.transform = node['transform']
+                else:
+                    if 'translation' in node:
+                        gltf_node.translation = node['translation']
+                    if 'rotation' in node:
+                        gltf_node.rotation = node['rotation']
+                    if 'scale' in node:
+                        gltf_node.scale = node['scale']
+                gltf.nodes.append(gltf_node)
+                if 'mesh' in node:
+                    gltf_node.mesh = gltf.meshes[node['mesh']]
+                    
+                    
+            for node_index, node in enumerate(gltf_data['nodes']):
+                if 'children' in node:
+                    for child_node_index in node['children']:
+                        gltf.nodes[node_index].children.append(gltf.nodes[child_node_index])
+
+
+
+        if 'scenes' in gltf_data:
+            for scene in gltf_data['scenes']:
+                gltf_scene = Scene()
+                nodes = []
+                if 'nodes' in scene:
+                    for node_index in scene['nodes']:
+                        nodes.append(gltf.nodes[node_index])
+                    gltf.create_scene(nodes)
+
+        
 
         return gltf
 
@@ -158,6 +165,23 @@ class GLTF(LoggerMixin, object):
         self._asset = value
 
     @property
+    def meshes(self):
+        """Get the meshes from glTF
+        """
+        return self._meshes
+
+    @meshes.setter
+    def meshes(self, value):
+        """Set the meshes for the glTF
+        
+        Arguments:
+            value {[Mesh]} -- [List of meshes]
+        """
+        self._meshes = value
+
+
+
+    @property
     def nodes(self):
         """Get the nodes in the glTF file:
         """
@@ -214,6 +238,8 @@ class GLTF(LoggerMixin, object):
             children.append(self._nodes.index(child))
         if len(children) > 0:
             gltf_node['children'] = children
+        if node.mesh:
+            gltf_node['mesh'] = self._meshes.index(node.mesh)
 
         return gltf_node
 
